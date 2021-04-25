@@ -47,5 +47,8 @@ class DefaultHotelService implements HotelService {
 		return Optional.of(
 				hotelRepository.findById(hotelId).orElseThrow(() -> new EntityNotFoundException("Hotel not found")));
 	}
-
+	
+	public void removeHotel(Hotel hotel) {
+		hotelRepository.save(hotel);
+	}
 }

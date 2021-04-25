@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,9 +40,18 @@ public class HotelController {
 		return hotelService.createNewHotel(hotel);
 	}
 
-	@GetMapping("/hotel/{hotelId}")
+	@GetMapping("/{hotelId}")
 	public Optional<Hotel> getHotelById(@PathVariable(value = "hotelId") Long hotelId) {
 		return hotelService.getHotelById(hotelId);
+	}
+
+	@DeleteMapping("/{hotelId}")
+	public void deleteHotelById(@PathVariable Long hotelId) {
+		Hotel hotel  = getHotelById(hotelId).get();
+		if(hotel != null) {
+			hotel.setDeleted(true);
+			hotelService.removeHotel(hotel);
+		}
 	}
 
 }
