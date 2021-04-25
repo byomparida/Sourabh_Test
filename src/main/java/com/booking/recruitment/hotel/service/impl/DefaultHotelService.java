@@ -51,4 +51,8 @@ class DefaultHotelService implements HotelService {
 	public void removeHotel(Hotel hotel) {
 		hotelRepository.save(hotel);
 	}
+	
+	public Double toRad(Double value) {
+		return value * Math.PI / 180;
+	}
 }

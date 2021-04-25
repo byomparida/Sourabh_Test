@@ -15,4 +15,6 @@ public interface HotelService {
   Optional<Hotel> getHotelById(Long hotelId);
   
   void removeHotel(Hotel hotel);
+  
+  Double toRad(Double value);
 }
